@@ -2,18 +2,24 @@
 const express = require('express')
 const app = express()
 const port = 4000
-
 const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.static('public'))
 
 const MWTimeReport = (req, res, next) => {
   const today = new Date()
-  const now = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + ' ' + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds() + ':' + today.getMilliseconds()
+  const now = today.getFullYear() + '-' +
+  (today.getMonth() < 10 ? '0' : '') + (today.getMonth() + 1) + '-' +
+  (today.getDate() < 10 ? '0' : '') + today.getDate() + ' ' +
+  (today.getHours() < 10 ? '0' : '') + today.getHours() + ':' +
+  (today.getMinutes() < 10 ? '0' : '') + today.getMinutes() + ':' +
+  (today.getSeconds() < 10 ? '0' : '') + today.getSeconds()
   console.log('Time: ' + now + ' | ' + req.method + ' from ' + req.path)
   next()
 }
 
-app.get('/', MWTimeReport)
+app.use(MWTimeReport)
+
 app.get('/', (req, res, next) => {
   res.send(`
     <form action="/" method="POST">
