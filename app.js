@@ -3,18 +3,26 @@ const express = require('express')
 const app = express()
 const port = 3000
 const bodyParser = require('body-parser')
+const time = require('moment-timezone')
+
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static('public'))
 
 const MWTimeReport = (req, res, next) => {
+  const start = Date.now()
   const today = new Date()
   const now = today.getFullYear() + '-' +
-  (today.getMonth() < 10 ? '0' : '') + (today.getMonth() + 1) + '-' +
+  ((today.getMonth() + 1) < 10 ? '0' : '') + (today.getMonth() + 1) + '-' +
   (today.getDate() < 10 ? '0' : '') + today.getDate() + ' ' +
   (today.getHours() < 10 ? '0' : '') + today.getHours() + ':' +
   (today.getMinutes() < 10 ? '0' : '') + today.getMinutes() + ':' +
   (today.getSeconds() < 10 ? '0' : '') + today.getSeconds()
   console.log('Time: ' + now + ' | ' + req.method + ' from ' + req.path)
+  console.log(Date.now())
+  res.on('finish', () => {
+    const duration = Date.now() - start
+    console.log(now + ' | ' + req.method + ' from ' + req.path + ' | total time: ' + duration + 'ms')
+  })
   next()
 }
 

@@ -5,7 +5,7 @@ When you make any request, server log will show some message.
 
 ## Features
 
-- Server log will record your all request method, path and curren time
+- Server log can record your all request method, path and curren time
 
 ## Tools
 
@@ -34,7 +34,7 @@ cd ac_middleware
 ```
 
 
-4.initialize npm
+4.Initialize npm
 ```
 npm i
 ```
@@ -49,7 +49,7 @@ npm run start
 App running on port 3000
 ```
 
-7.and you can open it from
+7.And you can open it from
 ```
 http://localhost:3000/
 ```
