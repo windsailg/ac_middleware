@@ -1,4 +1,4 @@
-# Nodejs Express some middleware v0.5
+# Nodejs Express some middleware v1.0
 
 When you make any request, server log will show some message.
 
@@ -6,6 +6,12 @@ When you make any request, server log will show some message.
 ## Features
 
 - Server log can record your all request method, path and curren time
+
+
+## 1.0 new features
+
+- add server response time into log
+
 
 ## Tools
 
