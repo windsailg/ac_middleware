@@ -17,8 +17,6 @@ const MWTimeReport = (req, res, next) => {
   (today.getHours() < 10 ? '0' : '') + today.getHours() + ':' +
   (today.getMinutes() < 10 ? '0' : '') + today.getMinutes() + ':' +
   (today.getSeconds() < 10 ? '0' : '') + today.getSeconds()
-  console.log('Time: ' + now + ' | ' + req.method + ' from ' + req.path)
-  console.log(Date.now())
   res.on('finish', () => {
     const duration = Date.now() - start
     console.log(now + ' | ' + req.method + ' from ' + req.path + ' | total time: ' + duration + 'ms')
